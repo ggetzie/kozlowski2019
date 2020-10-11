@@ -1,3 +1,5 @@
+import numpy as np
+
 import word_pairs as wp
 
 def get_vectors(model, words):
@@ -24,3 +26,18 @@ def get_dimension(model, words):
     
     vectors = get_vectors(model, words)
     return sum([v[0]-v[1] for v in vectors]) / len(vectors)
+
+def vector_projection(vector, dimension):
+    """
+    Calculate the vector projection of vector along the specified dimension
+    """
+
+    return (dimension / np.linalg.norm(dimension)) * np.dot(vector, dimension)
+
+
+def scalar_projection(vector, dimension):
+    """
+    Calculate the scalar projection of vector along the specified dimension
+    """
+
+    return np.dot(vector, dimension) / np.linalg.norm(dimension)
